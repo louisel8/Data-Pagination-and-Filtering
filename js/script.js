@@ -1,6 +1,6 @@
 /*
 Treehouse Techdegree:
-FSJS Project 2 - Data Pagination and Filtering - V2
+FSJS Project 2 - Data Pagination and Filtering - V3
 */
 
 
@@ -11,6 +11,10 @@ function showPage(list, page) {
     let startIndex = (page * itemsPerPage) - itemsPerPage;
     let endIndex = page * itemsPerPage;
     const studentList = document.querySelector(".student-list");
+
+    if (endIndex > list.length) {
+        endIndex = list.length;
+    }
 
     let html = '';
 
@@ -49,6 +53,11 @@ function addPagination(list) {
     }
 
     paginationList.innerHTML = paginationHtml;
+
+    const firstButton = paginationList.querySelector("button");
+    if (firstButton) {
+        firstButton.classList.add("active");
+    }
 
     function handlePaginationClick(e) {
         const buttonClicked = e.target.closest("button");
